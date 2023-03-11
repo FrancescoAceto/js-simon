@@ -3,28 +3,51 @@ Dopo 10 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i 
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 
-let NumberInput1EL = document.getElementById("NumberInput1");
-let NumberInput2EL = document.getElementById("NumberInput2");
-let NumberInput3EL = document.getElementById("NumberInput3");
-let NumberInput4EL = document.getElementById("NumberInput4");
-let NumberInput5EL = document.getElementById("NumberInput5");
+let NumbersInputsTotal = [
+    document.getElementById("NumberInput1"),
+    document.getElementById("NumberInput2"),
+    document.getElementById("NumberInput3"),
+    document.getElementById("NumberInput4"),
+    document.getElementById("NumberInput5"),
+];
 
-let UserNumbersEl = document.getElementById("UserNumbers");
+let UserNumbersEL = document.getElementById("UserNumbers");
 
 let PlaybuttonEL = document.getElementById("playbutton");
 
 let OutputButtonEL = document.getElementById("OutputButton");
 
+let UserOutputEL = document.getElementById("UserOutput");
+
 PlaybuttonEL.addEventListener("click", function () {
-    UserNumbersEl.innerText = randomNumbers;
+    UserNumbersEL.innerText = randomNumbers;
 })
 
 setTimeout(function () {
-    disappearNumbers(UserNumbersEl);
+    disappearNumbers(UserNumbersEL);
 }, 10000);
 
+OutputButtonEL.addEventListener("click", function (){
+    
+    checknumbers (RandomNumbersArray, NumbersInputsTotal);
 
+});
 
+function checknumbers(UserNumbersEL, userNumbers) {
+    
+    let rightNumbers = [];
+
+    for(let i = 0; i < userNumbers.length; i++) {
+
+        if(UserNumbersEL[i] == userNumbers[i].value) {
+          
+            rightNumbers.push(UserNumbersEL[i]);
+            
+            console.log("trovato");
+        }
+    }
+
+}
 
 
 
@@ -41,7 +64,7 @@ function disappearNumbers(UserNumbersEL) {
 
 
 
-createRandomNumbers(5);
+let RandomNumbersArray = createRandomNumbers(5);
 
 function createRandomNumbers(quantity) {
     randomNumbers = [];
